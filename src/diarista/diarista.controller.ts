@@ -1,5 +1,6 @@
 import {
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -72,5 +73,11 @@ export class DiaristaController {
     diarista.idade = request.body['idade'];
 
     return await this.diaristaRepository.save(diarista);
+  }
+
+  @Delete(':id')
+  @Redirect('/diaristas')
+  async delete(@Param('id') id: number) {
+    return await this.diaristaRepository.delete(id);
   }
 }
