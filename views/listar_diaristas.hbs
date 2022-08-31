@@ -1,0 +1,21 @@
+    <main class='container' style="width: 40%;">
+      <h1>Lista de Diaristas</h1>
+      <table class='table'>
+        <thead>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Endereço</th>
+          <th>Idade</th>
+        </thead>
+        <tbody>
+          {{#each diaristas}}
+            <tr>
+              <th>{{this.id}}</th>
+              <td><a href="/diaristas/show/{{this.id}}">{{this.nome}}</a></td>
+              <td>{{this.endereco}}</td>
+              <td>{{this.idade}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </main>
