@@ -21,7 +21,7 @@ export class DiaristaController {
     private diaristaRepository: Repository<Diarista>,
   ) {}
   @Get()
-  @Render('listar_diaristas')
+  @Render('listar-diaristas')
   async listarDiaristas() {
     return {
       diaristas: await this.diaristaRepository.find(),
@@ -37,7 +37,7 @@ export class DiaristaController {
     return { diarista: diarista };
   }
 
-  @Patch(':id')
+  @Patch(':id/edit')
   @Redirect('/diaristas')
   async update(@Param('id') id: number, @Req() request: Request) {
     const diarista = await this.diaristaRepository.findOneBy({ id: id });
@@ -49,19 +49,19 @@ export class DiaristaController {
     return await this.diaristaRepository.save(diarista);
   }
 
-  @Get('show/:id')
+  @Get('create')
+  @Render('create')
+  createView() {
+    //
+  }
+
+  @Get(':id')
   @Render('detalhes')
   async exibirDiarista(@Param('id') id: number) {
     return {
       diarista: await this.diaristaRepository.findOneBy({ id: id }),
       titulo: 'Diarista',
     };
-  }
-
-  @Get('create')
-  @Render('create')
-  createView() {
-    //
   }
 
   @Post()

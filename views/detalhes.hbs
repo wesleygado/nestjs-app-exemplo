@@ -1,6 +1,14 @@
-    <main class='container'>
-      <h1>Diarista</h1>
-      <p><strong>Nome:</strong> {{diarista.nome}}</p>
-      <p><strong>Endereço:</strong> {{diarista.endereco}}</p>
-      <p><strong>Idade:</strong> {{diarista.idade}}</p>
-    </main>
+<main class='container'>
+  <h1>Diarista</h1>
+  <p><strong>Nome:</strong> {{diarista.nome}}</p>
+  <p><strong>Endereço:</strong> {{diarista.endereco}}</p>
+  <p><strong>Idade:</strong> {{diarista.idade}}</p>
+  <div>
+    <a href="/diaristas" class="btn btn-primary">Voltar</a>
+    <a href="/diaristas/{{diarista.id}}/edit" class="btn btn-success">Editar Diarista</a>
+    <form action="/diaristas/{{diarista.id}}?_method=DELETE" method="POST" style="display: inline;">
+      <button type="submit" class="btn btn-danger"
+        onclick="alert('Você deseja realmente excluir este registro?')">Excluir</button>
+    </form>
+  </div>
+</main>

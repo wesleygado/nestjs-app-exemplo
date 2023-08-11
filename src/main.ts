@@ -12,6 +12,6 @@ async function bootstrap() {
   app.engine('hbs', exphbs.engine({ extname: '.hbs', defaultLayout: 'main' }));
   app.use(methodOverride('_method'));
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();

@@ -2,22 +2,25 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Diarista } from './diarista/diarista.entity';
 import { DiaristaModule } from './diarista/diarista.module';
+import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     DiaristaModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'treinaweb',
-      database: 'curso_nest',
+      host: process.env.HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [Diarista],
       synchronize: true,
     }),
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
